@@ -1,0 +1,56 @@
+mysql> select* from mentees;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 | OOPS    |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 | DBMS    |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |    55 | java    |
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 | TQM     |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select* from mentees ordered by name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by name' at line 1
+mysql> select* from mentees order by name;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 | DBMS    |
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 | TQM     |
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 | OOPS    |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |    55 | java    |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select* from mentees group by marks;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+| 192110112 | rakesh       | ece        | vilupuram | raja       |    55 | java    |
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 | TQM     |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 | DBMS    |
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 | OOPS    |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select* from mentees group by department;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 | TQM     |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 | DBMS    |
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 | OOPS    |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |    55 | java    |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select* from mentees
+    -> select* from mentees having marks>95;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select* from mentees having marks>95' at line 2
+mysql> select* from mentees having marks>95;
++-----------+-------+------------+-----------+------------+-------+---------+
+| regno     | name  | department | address   | fathername | marks | subject |
++-----------+-------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan | cse        | vilupuram | balaji     |    99 | OOPS    |
++-----------+-------+------------+-----------+------------+-------+---------+
+1 row in set (0.00 sec)

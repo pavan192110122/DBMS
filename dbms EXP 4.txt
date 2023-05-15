@@ -1,0 +1,58 @@
+
+mysql> SELECT*from mentees;
++-----------+--------------+------------+-----------+------------+
+| regno     | name         | department | address   | fathername |
++-----------+--------------+------------+-----------+------------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |
+|  19211023 | gnanaprakash | cse        | ambur     | nesamani   |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |
+|  19212124 | monish       | aids       | chennai   | rajan      |
+|   1921256 | rithick      | mech       | mumbai    | hariprasad |
++-----------+--------------+------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update mentees set department="bme" where regno=19211023;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-----------+--------------+------------+-----------+------------+
+| regno     | name         | department | address   | fathername |
++-----------+--------------+------------+-----------+------------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |
+|  19212124 | monish       | aids       | chennai   | rajan      |
+|   1921256 | rithick      | mech       | mumbai    | hariprasad |
++-----------+--------------+------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> update mentees set address="hyderabad" where department="aids";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-----------+--------------+------------+-----------+------------+
+| regno     | name         | department | address   | fathername |
++-----------+--------------+------------+-----------+------------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |
+|  19212124 | monish       | aids       | hyderabad | rajan      |
+|   1921256 | rithick      | mech       | mumbai    | hariprasad |
++-----------+--------------+------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from mentees where fathername="hariprasad";
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from mentees;
++-----------+--------------+------------+-----------+------------+
+| regno     | name         | department | address   | fathername |
++-----------+--------------+------------+-----------+------------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |
+|  19212124 | monish       | aids       | hyderabad | rajan      |
++-----------+--------------+------------+-----------+------------+
+4 rows in set (0.00 sec)

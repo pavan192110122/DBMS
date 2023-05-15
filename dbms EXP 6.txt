@@ -1,0 +1,218 @@
+mysql> use sse;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_sse |
++---------------+
+| bin           |
+| empdepartment |
+| empdept       |
+| employee      |
+| mentees       |
+| student       |
+| studepartment |
+| t             |
++---------------+
+8 rows in set (0.01 sec)
+
+mysql> select* from mentees;
++-----------+---------+------+---------+------------+
+| Regno     | Name    | Dept | Address | Fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | Gowtham | CSE  | Erode   | moorthi    |
+| 192011079 | arun    | BME  | nellore | muthu      |
+| 192011095 | Harish  | ECE  | Madurai | Kannan     |
+| 192011080 | Harini  | ECE  | Tanjore | Velu       |
+| 192211080 | Dhivya  | ECE  | Tirupur | Ramesh     |
++-----------+---------+------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select *from mentees where Dept='ECE';
++-----------+--------+------+---------+------------+
+| Regno     | Name   | Dept | Address | Fathername |
++-----------+--------+------+---------+------------+
+| 192011095 | Harish | ECE  | Madurai | Kannan     |
+| 192211080 | Dhivya | ECE  | Tirupur | Ramesh     |
++-----------+--------+------+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from mentees where Name="Gowtham";
++-----------+---------+------+---------+------------+
+| Regno     | Name    | Dept | Address | Fathername |
++-----------+---------+------+---------+------------+
+| 192011090 | Gowtham | CSE  | Chennai | moorthi    |
++-----------+---------+------+---------+------------+
+1 row in set (0.00 sec)
+mysql> alter table mentees add Marks int(3);
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> update mentees set Marks=99 where Dept="CSE";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=91 where Dept="BME";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set Marks=91 where Name="Dhivya";
+Query OK, 1 row affected (0.02 sec)
+
+mysql> update mentees set Marks=95 where Name="Harish";
+Query OK, 1 row affected (0.02 sec)
+
+
+mysql> select* from mentees;
++-----------+---------+------+---------+------------+-------+
+| Regno     | Name    | Dept | Address | Fathername | Marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | Gowtham | CSE  | Chennai | moorthi    |    99 |
+| 192011079 | arun    | BME  | nellore | muthu      |    91 |
+| 192011095 | Harish  | ECE  | Madurai | Kannan     |    95 |
+| 192211080 | Dhivya  | ECE  | Tirupur | Ramesh     |    91 |
++-----------+---------+------+---------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from mentees where Name like 'G%';
++-----------+---------+------+---------+------------+-------+
+| Regno     | Name    | Dept | Address | Fathername | Marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | Gowtham | CSE  | Chennai | moorthi    |    99 |
++-----------+---------+------+---------+------------+-------+
+1 row in set (0.01 sec)
+mysql> select*from mentees where Dept like '%S%';
++-----------+---------+------+---------+------------+-------+
+| Regno     | Name    | Dept | Address | Fathername | Marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | Gowtham | CSE  | Chennai | moorthi    |    99 |
++-----------+---------+------+---------+------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select*from mentees where Address like '%i';
++-----------+---------+------+---------+------------+-------+
+| Regno     | Name    | Dept | Address | Fathername | Marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | Gowtham | CSE  | Chennai | moorthi    |    99 |
+| 192011095 | Harish  | ECE  | Madurai | Kannan     |    95 |
++-----------+---------+------+---------+------------+-------+
+2 rows in set (0.00 sec)
+mysql> select *from mentees where Address like 'C___n_i';
++-----------+---------+------+---------+------------+-------+
+| Regno     | Name    | Dept | Address | Fathername | Marks |
++-----------+---------+------+---------+------------+-------+
+| 192011090 | Gowtham | CSE  | Chennai | moorthi    |    99 |
++-----------+---------+------+---------+------------+--+-----------+--------------+------------+-----------+------------+-------+
+| regno     | name         | department | address   | fathername | marks |
++-----------+--------------+------------+-----------+------------+-------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |    55 |
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 |
++-----------+--------------+------------+-----------+------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> alter table mentees subject varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'subject varchar(20)' at line 1
+mysql> alter table mentees add subject varchar(20);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set subject="PDSD" where name="pavan";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="DBMS" where department="bme";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="TQM" where reno=19212124;
+ERROR 1054 (42S22): Unknown column 'reno' in 'where clause'
+mysql> update mentees set subject="TQM" where regno=19212124;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="OOPS" where department="cse";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 | OOPS    |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 | DBMS    |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |    55 | NULL    |
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 | TQM     |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> update mentees set subject="java" where name="rakesh";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 | OOPS    |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 | DBMS    |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |    55 | java    |
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 | TQM     |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select* from mentees where marks betwween 85 and 100;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'betwween 85 and 100' at line 1
+mysql> select* from mentees where marks between 85 and 99;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |    99 | OOPS    |
+|  19211023 | gnanaprakash | bme        | ambur     | nesamani   |    88 | DBMS    |
+|  19212124 | monish       | aids       | hyderabad | rajan      |    87 | TQM     |
++-----------+--------------+------------+-----------+------------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select* from mentees where subject="OOPS";
++-----------+-------+------------+-----------+------------+-------+---------+
+| regno     | name  | department | address   | fathername | marks | subject |
++-----------+-------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan | cse        | vilupuram | balaji     |    99 | OOPS    |
++-----------+-------+------------+-----------+------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select* sum(marks) where department="cse";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sum(marks) where department="cse"' at line 1
+mysql> select sum(marks) from mentees where department="cse";
++------------+
+| sum(marks) |
++------------+
+|         99 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) as average from mentees;
++---------+
+| average |
++---------+
+| 82.2500 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) as minimum marks from mentees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'marks from mentees' at line 1
+mysql> select min(marks) as minimum from mentees;
++---------+
+| minimum |
++---------+
+|      55 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select max(marks) as maximum from mentees;
++---------+
+| maximum |
++---------+
+|      99 |
++---------+
+1 row in set (0.00 sec)
