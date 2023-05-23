@@ -1,0 +1,98 @@
+
+mysql> show databes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databes' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sse                |
+| test               |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use sse;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_sse     |
++-------------------+
+| faculty           |
+| mentees           |
+| student7          |
+| studentdepartment |
++-------------------+
+4 rows in set (0.00 sec)
+
+mysql> select* from mentees;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan        | CSE        | vilupuram | balaji     |    99 | OOPS    |
+|  19211023 | gnanaprakash | BME        | ambur     | nesamani   |    88 | DBMS    |
+| 192110112 | rakesh       | ECE        | vilupuram | raja       |    66 | java    |
+|  19212124 | monish       | AIDS       | hyderabad | rajan      |    87 | TQM     |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select* from mentees where department="AIDS";
++----------+--------+------------+-----------+------------+-------+---------+
+| regno    | name   | department | address   | fathername | marks | subject |
++----------+--------+------------+-----------+------------+-------+---------+
+| 19212124 | monish | AIDS       | hyderabad | rajan      |    87 | TQM     |
++----------+--------+------------+-----------+------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select* from mentees where name="pavan";
++-----------+-------+------------+-----------+------------+-------+---------+
+| regno     | name  | department | address   | fathername | marks | subject |
++-----------+-------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan | CSE        | vilupuram | balaji     |    99 | OOPS    |
++-----------+-------+------------+-----------+------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> update mentees set marks=100 where name="pavan";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select* from mentees;
++-----------+--------------+------------+-----------+------------+-------+---------+
+| regno     | name         | department | address   | fathername | marks | subject |
++-----------+--------------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan        | CSE        | vilupuram | balaji     |   100 | OOPS    |
+|  19211023 | gnanaprakash | BME        | ambur     | nesamani   |    88 | DBMS    |
+| 192110112 | rakesh       | ECE        | vilupuram | raja       |    66 | java    |
+|  19212124 | monish       | AIDS       | hyderabad | rajan      |    87 | TQM     |
++-----------+--------------+------------+-----------+------------+-------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select* from mentees where name like '%p';
+Empty set (0.00 sec)
+
+mysql> select * from mentees where name like 'p%';
++-----------+-------+------------+-----------+------------+-------+---------+
+| regno     | name  | department | address   | fathername | marks | subject |
++-----------+-------+------------+-----------+------------+-------+---------+
+| 192110122 | pavan | CSE        | vilupuram | balaji     |   100 | OOPS    |
++-----------+-------+------------+-----------+------------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select* from mentees where address like '%i';
+Empty set (0.00 sec)
+
+mysql> select* from mentees where address like '%r';
++----------+--------------+------------+---------+------------+-------+---------+
+| regno    | name         | department | address | fathername | marks | subject |
++----------+--------------+------------+---------+------------+-------+---------+
+| 19211023 | gnanaprakash | BME        | ambur   | nesamani   |    88 | DBMS    |
++----------+--------------+------------+---------+------------+-------+---------+
+1 row in set (0.00 sec)
+mysql> select *from mentees where address like 'h_d_____d';
++----------+--------+------------+-----------+------------+-------+---------+
+| regno    | name   | department | address   | fathername | marks | subject |
++----------+--------+------------+-----------+------------+-------+---------+
+| 19212124 | monish | AIDS       | hyderabad | rajan      |    87 | TQM     |
++----------+--------+------------+-----------+------------+-------+---------+
+1 row in set (0.00 sec)
