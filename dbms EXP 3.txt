@@ -1,0 +1,54 @@
+mysql> create table mentees(Regno int(10),name varchar(20),dept varchar(4),address varchar(20),fathername varchar(10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> use sse;
+Database changed
+mysql>
+mysql> create table mentees(regno int(10),name varchar(20),department varchar(5),address varchar(20),fathername varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into mentees values(192110122,"pavan","cse","vilupuram","balaji");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(19211023,"gnanaprakash","cse","ambur","nesamani");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(192110112,"rakesh","ece","vilupuram","raja");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(19212124,"monish","aids","chennai","rajan");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mentees values(1921256,"rithick","mech","mumbai","hariprasad");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from mentees;
++-----------+--------------+------------+-----------+------------+
+| regno     | name         | department | address   | fathername |
++-----------+--------------+------------+-----------+------------+
+| 192110122 | pavan        | cse        | vilupuram | balaji     |
+|  19211023 | gnanaprakash | cse        | ambur     | nesamani   |
+| 192110112 | rakesh       | ece        | vilupuram | raja       |
+|  19212124 | monish       | aids       | chennai   | rajan      |
+|   1921256 | rithick      | mech       | mumbai    | hariprasad |
++-----------+--------------+------------+-----------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select name from mentees;
++--------------+
+| name         |
++--------------+
+| pavan        |
+| gnanaprakash |
+| rakesh       |
+| monish       |
+| rithick      |
+  +--------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees where name="pavan";
++-----------+-------+------------+-----------+------------+
+| regno     | name  | department | address   | fathername |
++-----------+-------+------------+-----------+------------+
+| 192110122 | pavan | cse        | vilupuram | balaji     |
++-----------+-------+------------+-----------+------------+
+1 row in set (0.00 sec)
